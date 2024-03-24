@@ -32,7 +32,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Form> forms;
 
-    @OneToOne(mappedBy = "master")
+    @OneToMany(mappedBy = "master")
     private Room masterRoom;
 
     @OneToOne(mappedBy = "receiver")
