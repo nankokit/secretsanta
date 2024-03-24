@@ -33,7 +33,7 @@ public class User {
     private List<Form> forms;
 
     @OneToMany(mappedBy = "master")
-    private Room masterRoom;
+    private List<Room> masterRoom;
 
     @OneToOne(mappedBy = "receiver")
     private Form mySantaForm;

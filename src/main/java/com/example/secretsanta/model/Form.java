@@ -8,7 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "forms")
 public class Form {
@@ -30,4 +32,5 @@ public class Form {
     @ManyToOne
     @JoinColumn(name = "receiver_id")
     private User receiver;
+
 }
