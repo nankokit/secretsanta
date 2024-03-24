@@ -1,27 +1,34 @@
 package com.example.secretsanta.model;
 
-import java.util.List;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "rooms")
-public class Room {
+@Table(name = "forms")
+public class Form {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "master_id")
-    private User master;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @OneToMany(mappedBy = "room")
-    private List<Form> forms;
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
+
+    @Column(name = "letter")
+    private String letter;
+
+    @OneToOne
+    @JoinColumn(name = "receiver_id")
+    private User receiver;
 }
