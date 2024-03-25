@@ -8,7 +8,10 @@ public interface UserService {
 
     public User createUser(User user);
 
-    public User getUserById(Long id);
+    public static User getUserById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUserById'");
+    }
 
     public List<User> getAllUsers();
 
