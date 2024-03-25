@@ -40,6 +40,10 @@ public class User {
     private List<Form> forms;
 
     @JsonIgnore
+    @OneToMany(mappedBy = "master")
+    private List<Room> masterRooms;
+
+    @JsonIgnore
     @OneToOne(mappedBy = "receiver")
     private Form mySantaForm;
 
