@@ -9,17 +9,23 @@ import com.example.secretsanta.model.Room;
 import com.example.secretsanta.repository.RoomRepository;
 import com.example.secretsanta.service.RoomService;
 
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class RoomServiceImpl implements RoomService {
 
     private RoomRepository roomRepository;
+    private EntityManager entityManager;
 
     @Override
     public Room createRoom(Room room) {
-        return roomRepository.save(room);
+        roomRepository.save(room);
+        entityManager.refresh(room);
+        return room;
     }
 
     @Override

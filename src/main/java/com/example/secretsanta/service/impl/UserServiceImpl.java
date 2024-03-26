@@ -9,10 +9,12 @@ import com.example.secretsanta.model.User;
 import com.example.secretsanta.repository.UserRepository;
 import com.example.secretsanta.service.UserService;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;

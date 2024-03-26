@@ -9,17 +9,23 @@ import com.example.secretsanta.model.Form;
 import com.example.secretsanta.repository.FormRepository;
 import com.example.secretsanta.service.FormService;
 
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class FormServiceImpl implements FormService {
 
     private FormRepository formRepository;
+    private EntityManager entityManager;
 
     @Override
     public Form createForm(Form form) {
-        return formRepository.save(form);
+        formRepository.save(form);
+        entityManager.refresh(form);
+        return form;
     }
 
     @Override
