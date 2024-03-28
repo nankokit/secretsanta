@@ -48,4 +48,11 @@ public class RoomController {
     public List<Room> getAllRooms() {
         return roomService.getAllRooms();
     }
+
+    @GetMapping("/user/{id}")
+    public List<Room> getRoomsByUserId(@PathVariable("id") Long userId) {
+
+        return roomService.findRoomsByUser(userId);
+    }
+
 }

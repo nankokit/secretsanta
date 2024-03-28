@@ -15,4 +15,6 @@ public interface RoomService {
     public Room updateRoom(Long id, Room updatedRoom);
 
     public void deleteRoom(Long id);
+
+    public List<Room> findRoomsByUser(Long userId);
 }
