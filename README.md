@@ -14,7 +14,7 @@
 Коммуникация внутри комнаты:
 Участники могут общаться между собой внутри комнаты через встроенный чат.
 
-**Технологии:** OpenJDK 21, Spring Boot 3.2.3, Maven, PostgreSQL
+**Технологии:** OpenJDK 21, Spring Boot 3.2.3, Maven, Hibernate, PostgreSQL
  
 ## Лабораторная работа №1 
 #### Создание простейшего сервиса с помощью Spring Boot
@@ -29,4 +29,33 @@
 Связь "**один ко многим**" между пользователями (User) и комнатами (Room) с помощью поля ведущего(master_id).
 
 Структура базы и связей таблиц:
-![db shema](image_2024-03-24_16-04-57.png)
+
+![db shema](image_2024-03-24_16-04-57.png "secret santa shema")
+
+## Лабораторная работа №3
+#### Добавление кастомных запросов (@Query) с параметрами. Реализация кэша с помощью in-memory Map
+
+Реализация DTO:
+* room:
+    + id 
+    + info {id, UserInfoDTO master, List<UserInfoDTO> roomParticipants}
+    + participants {List<UserInfoDTO> roomParticipants}
+* form:
+    + letter {UserNameDTO author, letter}
+    + pair {UserNameDTO santa, UserNameDTO receiver}
+* user:
+    + name
+    + info {id, name, email}
+
+Реализация данных запросов: 
+
+* Room
+    + имена участников по id комнаты
+    + вся информация об участниках по id комнаты
+* Form
+    + имя и получатель
+    + имя и письмо для Санты
+* User
+    + все id комнат
+
+
