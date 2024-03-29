@@ -35,26 +35,31 @@
 ## Лабораторная работа №3
 #### Добавление кастомных запросов (@Query) с параметрами. Реализация кэша с помощью in-memory Map
 
-Реализация DTO:
-* room:
-    + id 
-    + info {id, UserInfoDTO master, List<UserInfoDTO> roomParticipants}
-    + participants {List<UserInfoDTO> roomParticipants}
-* form:
-    + letter {UserNameDTO author, letter}
-    + pair {UserNameDTO santa, UserNameDTO receiver}
-* user:
-    + name
-    + info {id, name, email}
+Реализация запроса списка комнат пользователя: 
+```
+@Query("SELECT r FROM Room r JOIN r.users u WHERE u.id = :user")
+    List<Room> findRoomsByUser(@Param("user") Long user);
+```
 
-Реализация данных запросов: 
+Реализация кэша:
+```
+public class EntityCache<T> {
+    Map<Long, T> cache = new HashMap<>();
 
-* Room
-    + вся информация об участниках по id комнаты
-* Form
-    + имя и получатель
-    + имя и письмо для Санты
-* User
-    + все id комнат
+    private static final int MAX = 100;
 
+    public Optional<T> get(Long key) {
+        return Optional.ofNullable(cache.get(key));
+    }
 
+    public void put(Long key, T value) {
+        if (cache.size() >= MAX)
+            cache.clear();
+        cache.put(key, value);
+    }
+
+    public void remove(Long key) {
+        cache.remove(key);
+    }
+}
+```
