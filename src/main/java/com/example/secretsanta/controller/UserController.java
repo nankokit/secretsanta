@@ -1,6 +1,7 @@
 package com.example.secretsanta.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public User getUserById(@PathVariable Long userId) {
+    public Optional<User> getUserById(@PathVariable Long userId) {
         return userService.getUserById(userId);
     }
 
