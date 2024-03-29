@@ -1,6 +1,7 @@
 package com.example.secretsanta.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,7 +41,7 @@ public class RoomController {
     }
 
     @GetMapping("/{roomId}")
-    public Room getRoomById(@PathVariable Long roomId) {
+    public Optional<Room> getRoomById(@PathVariable Long roomId) {
         return roomService.getRoomById(roomId);
     }
 

@@ -48,7 +48,6 @@ public class UserServiceImpl implements UserService {
     public User updateUser(Long userId, User updatedUser) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new NoSuchElementException("User not found"));
-
         user.setName(updatedUser.getName());
         user.setEmail(updatedUser.getEmail());
         user.setPassword(updatedUser.getPassword());
