@@ -14,23 +14,22 @@ import lombok.Data;
 @Entity
 @Table(name = "forms")
 public class Form {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
+  @ManyToOne
+  @JoinColumn(name = "room_id")
+  private Room room;
 
-    @Column(name = "letter")
-    private String letter;
+  @Column(name = "letter")
+  private String letter;
 
-    @ManyToOne
-    @JoinColumn(name = "receiver_id")
-    private User receiver;
-
+  @ManyToOne
+  @JoinColumn(name = "receiver_id")
+  private User receiver;
 }

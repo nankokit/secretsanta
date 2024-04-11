@@ -1,9 +1,7 @@
 package com.example.secretsanta.dto.room;
 
+import com.example.secretsanta.dto.user.UserInfoDto;
 import java.util.List;
-
-import com.example.secretsanta.dto.user.UserInfoDTO;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomInfoDTO {
-    private Long id;
-    private UserInfoDTO master;
-    private List<UserInfoDTO> roomParticipants;
+public class RoomInfoDto {
+  private Long id;
+  private UserInfoDto master;
+  private List<UserInfoDto> roomParticipants;
 }

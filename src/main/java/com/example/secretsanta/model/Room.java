@@ -1,9 +1,6 @@
 package com.example.secretsanta.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,25 +11,25 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "rooms")
 public class Room {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "master_id")
-    private User master;
+  @ManyToOne
+  @JoinColumn(name = "master_id")
+  private User master;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
-    private List<Form> forms;
+  @JsonIgnore
+  @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
+  private List<Form> forms;
 
-    @ManyToMany(mappedBy = "rooms")
-    private List<User> users;
-
+  @ManyToMany(mappedBy = "rooms")
+  private List<User> users;
 }

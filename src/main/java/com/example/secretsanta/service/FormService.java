@@ -1,18 +1,17 @@
 package com.example.secretsanta.service;
 
-import java.util.List;
-
 import com.example.secretsanta.model.Form;
+import java.util.List;
 
 public interface FormService {
 
-    public Form createForm(Form form);
+  public Form createForm(Form form);
 
-    public Form getFormById(Long id);
+  public Form getFormById(Long id);
 
-    public List<Form> getAllForms();
+  public List<Form> getAllForms();
 
-    public Form updateForm(Long id, Form updatedForm);
+  public Form updateForm(Long id, Form updatedForm);
 
-    public void deleteForm(Long id);
+  public void deleteForm(Long id);
 }
