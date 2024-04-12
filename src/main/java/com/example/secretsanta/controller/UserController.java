@@ -1,11 +1,11 @@
 package com.example.secretsanta.controller;
 
+import com.example.secretsanta.dto.user.UserInfoDto;
 import com.example.secretsanta.model.User;
 import com.example.secretsanta.service.UserService;
 import java.util.List;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +23,8 @@ public class UserController {
   private UserService userService;
 
   @PostMapping
-  public ResponseEntity<User> createUser(@RequestBody User user) {
-    return ResponseEntity.ok(userService.createUser(user));
+  public Optional<UserInfoDto> createUser(@RequestBody User user) {
+    return userService.createUser(user);
   }
 
   @PutMapping("/{userId}")
@@ -39,7 +39,7 @@ public class UserController {
   }
 
   @GetMapping("/{userId}")
-  public Optional<User> getUserById(@PathVariable Long userId) {
+  public Optional<UserInfoDto> getUserById(@PathVariable Long userId) {
     return userService.getUserById(userId);
   }
 
