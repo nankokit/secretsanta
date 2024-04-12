@@ -9,10 +9,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
-import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@AllArgsConstructor
 @Service
 @Transactional
 public class FormServiceImpl implements FormService {
@@ -20,6 +20,19 @@ public class FormServiceImpl implements FormService {
   private FormRepository formRepository;
   private EntityManager entityManager;
   private EntityCache<Form> formCache;
+  private ModelMapper modelMapper;
+
+  @Autowired
+  public FormServiceImpl(
+      FormRepository formRepository,
+      EntityManager entityManager,
+      EntityCache<Form> formCache,
+      ModelMapper modelMapper) {
+    this.formRepository = formRepository;
+    this.entityManager = entityManager;
+    this.formCache = formCache;
+    this.modelMapper = modelMapper;
+  }
 
   @Logged
   @Override

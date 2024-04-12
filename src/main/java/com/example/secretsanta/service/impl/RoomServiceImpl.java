@@ -9,10 +9,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@AllArgsConstructor
 @Service
 @Transactional
 public class RoomServiceImpl implements RoomService {
@@ -20,6 +20,15 @@ public class RoomServiceImpl implements RoomService {
   private RoomRepository roomRepository;
   private EntityManager entityManager;
   private EntityCache<Room> roomCache;
+  private ModelMapper modelMapper;
+
+  @Autowired
+  public RoomServiceImpl(
+      RoomRepository roomRepository, EntityCache<Room> roomCache, ModelMapper modelMapper) {
+    this.roomRepository = roomRepository;
+    this.roomCache = roomCache;
+    this.modelMapper = modelMapper;
+  }
 
   @Logged
   @Override
