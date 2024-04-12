@@ -2,6 +2,8 @@ package com.example.secretsanta.service.impl;
 
 import com.example.secretsanta.aop.Logged;
 import com.example.secretsanta.cache.EntityCache;
+import com.example.secretsanta.exception.BadRequestException;
+import com.example.secretsanta.exception.NotFoundException;
 import com.example.secretsanta.model.User;
 import com.example.secretsanta.repository.UserRepository;
 import com.example.secretsanta.service.UserService;
@@ -23,6 +25,9 @@ public class UserServiceImpl implements UserService {
   @Logged
   @Override
   public User createUser(User user) {
+    if (user.getName() == null || user.getName().equals("")) {
+      throw new BadRequestException("Wrong user name");
+    }
     userCache.put(user.getId(), user);
     return userRepository.save(user);
   }
@@ -35,6 +40,8 @@ public class UserServiceImpl implements UserService {
       user = userRepository.findById(userId);
       if (user.isPresent()) {
         userCache.put(userId, user.get());
+      } else {
+        throw new NotFoundException("There is no user with id=", userId);
       }
     }
     return user;
