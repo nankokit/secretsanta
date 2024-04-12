@@ -1,0 +1,2 @@
+12:41:02.591 INFO  c.e.secretsanta.aop.LoggingAspect - Aspect is initialized
+12:46:00.432 INFO  c.e.secretsanta.aop.LoggingAspect - Aspect is destroyed
