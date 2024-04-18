@@ -6,7 +6,8 @@ mvnw.cmd
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-z
+app.log
+
 ### STS ###
 .apt_generated
 .classpath
