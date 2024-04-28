@@ -32,6 +32,15 @@ public class UserServiceImpl implements UserService {
     return userRepository.save(user);
   }
 
+  public String bulkCreateUser(List<User> users) {
+    try {
+      userRepository.saveAll(users);
+      return "Bulk operation completed successfully";
+    } catch (Exception e) {
+      return "Error occurred during bulk operation";
+    }
+  }
+
   @Logged
   @Override
   public Optional<User> getUserById(Long userId) {

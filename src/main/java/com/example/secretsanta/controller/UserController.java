@@ -27,6 +27,11 @@ public class UserController {
     return ResponseEntity.ok(userService.createUser(user));
   }
 
+  @PostMapping("/bulk")
+  public String bulkCreateUser(@RequestBody List<User> users) {
+    return userService.bulkCreateUser(users);
+  }
+
   @PutMapping("/{userId}")
   public User updateUser(@PathVariable Long userId, @RequestBody User user) {
     user.setId(userId);
