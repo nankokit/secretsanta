@@ -32,13 +32,11 @@ public class UserServiceImpl implements UserService {
     return userRepository.save(user);
   }
 
-  public String bulkCreateUser(List<User> users) {
-    try {
-      userRepository.saveAll(users);
-      return "Bulk operation completed successfully";
-    } catch (Exception e) {
-      return "Error occurred during bulk operation";
+  public List<User> bulkCreateUser(List<User> users) {
+    if (users.stream().anyMatch(u -> (u.getName() == null || u.getName().equals("")))) {
+      throw new BadRequestException("Wrong user(s) name(s)");
     }
+    return users.stream().map(u -> userRepository.save(u)).toList();
   }
 
   @Logged

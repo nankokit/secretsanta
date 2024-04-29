@@ -8,7 +8,7 @@ public interface UserService {
 
   public User createUser(User user);
 
-  public  String bulkCreateUser(List<User> users);
+  public List<User> bulkCreateUser(List<User> users);
 
   public Optional<User> getUserById(Long id);
 
