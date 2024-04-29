@@ -71,5 +71,21 @@ public class EntityCache<T> {
 ![all endpoints](image.png)
 
 ## Лабораторная работа №5
-#### Добавлени bulk операций и Unit-тестов
+#### Добавление bulk операций и Unit-тестов
+
+Реализация bulk операции:
+```
+public List<User> bulkCreateUser(List<User> users) {
+    if (users.stream().anyMatch(u -> (u.getName() == null || u.getName().equals("")))) {
+      throw new BadRequestException("Wrong user(s) name(s)");
+    }
+    return users.stream().map(u -> userRepository.save(u)).toList();
+  }
+```
+
+Результат покрытия тестами с помощью плагина jacoco:
+![test results](image-1.png)
+
+## Лабораторная работа №6
+#### Подсчёт обращений к основному сервису
 

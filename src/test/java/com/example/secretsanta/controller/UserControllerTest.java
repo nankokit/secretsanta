@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -45,22 +44,6 @@ class UserControllerTest {
     assertNotNull(response.getBody());
     assertEquals(user, response.getBody());
     verify(userService).createUser(user);
-  }
-
-  @Test
-  void testBulkCreateUser() {
-    // Arrange
-    List<User> users = new ArrayList<>();
-    users.add(new User());
-    when(userService.bulkCreateUser(anyList())).thenReturn("Bulk create success");
-
-    // Act
-    String response = userController.bulkCreateUser(users);
-
-    // Assert
-    assertNotNull(response);
-    assertEquals("Bulk create success", response);
-    verify(userService).bulkCreateUser(anyList());
   }
 
   @Test

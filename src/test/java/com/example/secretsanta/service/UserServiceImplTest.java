@@ -3,6 +3,7 @@ package com.example.secretsanta.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -84,16 +85,18 @@ class UserServiceImplTest {
   void bulkCreateUser_ValidUsers_ShouldReturnSuccessMessage() {
     // Arrange
     List<User> users = new ArrayList<>();
-    users.add(new User());
-    users.add(new User());
+    User user = new User();
+    user.setName("Test name");
+    users.add(user);
+    users.add(user);
 
     // Act
-    when(userRepository.saveAll(users)).thenReturn(users);
-    String result = userService.bulkCreateUser(users);
+    when(userRepository.save(user)).thenReturn(user);
+    List<User> result = userService.bulkCreateUser(users);
 
     // Assert
-    verify(userRepository).saveAll(users);
-    assertEquals("Bulk operation completed successfully", result);
+    verify(userRepository, times(2)).save(user);
+    assertEquals(users, result);
   }
 
   @Test
@@ -105,11 +108,9 @@ class UserServiceImplTest {
 
     // Act
     when(userRepository.saveAll(users)).thenThrow(new RuntimeException());
-    String result = userService.bulkCreateUser(users);
 
     // Assert
-    verify(userRepository).saveAll(users);
-    assertEquals("Error occurred during bulk operation", result);
+    assertThrows(RuntimeException.class, () -> userService.bulkCreateUser(users));
   }
 
   @Test
@@ -146,7 +147,6 @@ class UserServiceImplTest {
     verify(userCache).get(userId);
     verify(userRepository).findById(userId);
     verify(userCache).put(userId, user);
-   
   }
 
   @Test
@@ -201,7 +201,6 @@ class UserServiceImplTest {
     verify(userRepository).findById(userId);
     verify(userRepository).save(updatedUser);
     verify(userCache).put(userId, updatedUser);
-    
   }
 
   @Test
