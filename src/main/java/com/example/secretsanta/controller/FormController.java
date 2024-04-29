@@ -1,5 +1,6 @@
 package com.example.secretsanta.controller;
 
+import com.example.secretsanta.aop.RequestStats;
 import com.example.secretsanta.model.Form;
 import com.example.secretsanta.service.FormService;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestStats
 @RestController
 @RequestMapping("/forms")
 @AllArgsConstructor
