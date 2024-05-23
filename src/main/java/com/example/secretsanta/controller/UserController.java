@@ -27,7 +27,7 @@ public class UserController {
 
   private UserService userService;
 
-  @GetMapping("/users/search")
+  @GetMapping("/search")
   public Long searchUserIdByNameAndPassword(
       @RequestParam("name") String name, @RequestParam("password") String password) {
     User user = userService.findByNameAndPassword(name, password);

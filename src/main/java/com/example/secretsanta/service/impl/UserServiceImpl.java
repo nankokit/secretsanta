@@ -24,6 +24,14 @@ public class UserServiceImpl implements UserService {
 
   @Logged
   @Override
+  public User findByNameAndPassword(String name, String password) {
+    return userRepository
+        .findByNameAndPassword(name, password)
+        .orElseThrow(() -> new NoSuchElementException("User not found"));
+  }
+
+  @Logged
+  @Override
   public User createUser(User user) {
     if (user.getName() == null || user.getName().equals("")) {
       throw new BadRequestException("Wrong user name");

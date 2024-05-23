@@ -6,6 +6,8 @@ import java.util.Optional;
 
 public interface UserService {
 
+  public User findByNameAndPassword(String name, String password);
+
   public User createUser(User user);
 
   public List<User> bulkCreateUser(List<User> users);
