@@ -18,3 +18,8 @@ services:
     environment:
       POSTGRES_DB: secret_santa
       POSTGRES_HOST_AUTH_METHOD: trust
+
+  front:
+    build: ../frontend/front-secret-santa
+    ports:
+      - 3000:80
