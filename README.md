@@ -100,6 +100,7 @@ public List<User> bulkCreateUser(List<User> users) {
 #### Подсчёт обращений к основному сервису
 
 Результат нагрузочного теста на 2000 запросов:
+
 ![jmeter test result](image-2.png)
 
 ## Лабораторная работа №7
