@@ -13,6 +13,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -24,10 +26,14 @@ public class Room {
 
   @ManyToOne
   @JoinColumn(name = "master_id")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private User master;
 
   @JsonIgnore
   @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private List<Form> forms;
 
   @ManyToMany(mappedBy = "rooms")

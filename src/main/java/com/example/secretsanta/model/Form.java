@@ -9,6 +9,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -20,10 +22,14 @@ public class Form {
 
   @ManyToOne
   @JoinColumn(name = "user_id")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private User user;
 
   @ManyToOne
   @JoinColumn(name = "room_id")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private Room room;
 
   @Column(name = "letter")
@@ -31,5 +37,7 @@ public class Form {
 
   @ManyToOne
   @JoinColumn(name = "receiver_id")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private User receiver;
 }

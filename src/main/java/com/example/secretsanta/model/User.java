@@ -15,6 +15,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -35,14 +37,20 @@ public class User {
 
   @JsonIgnore
   @OneToMany(mappedBy = "user")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private List<Form> forms;
 
   @JsonIgnore
   @OneToMany(mappedBy = "master")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private List<Room> masterRooms;
 
   @JsonIgnore
   @OneToOne(mappedBy = "receiver")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private Form mySantaForm;
 
   @JsonIgnore
@@ -51,5 +59,7 @@ public class User {
       name = "forms",
       joinColumns = @JoinColumn(name = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "room_id"))
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private List<Room> rooms;
 }
